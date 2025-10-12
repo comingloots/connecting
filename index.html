@@ -16,6 +16,7 @@
       color: #333;
     }
 
+    /* Style for all buttons (Open Job Page and Telegram Button) */
     button {
       background: #0078ff;
       color: white;
@@ -25,10 +26,21 @@
       border-radius: 6px;
       cursor: pointer;
       transition: 0.3s;
+      /* Add margin bottom to separate the buttons */
+      margin-bottom: 15px;
     }
 
     button:hover {
       background: #005fcc;
+    }
+
+    /* Specific style for the new Telegram button to make it stand out */
+    .telegram-btn {
+      background: #0088cc; /* Telegram Blue */
+    }
+
+    .telegram-btn:hover {
+      background: #006fa3;
     }
 
     .popup {
@@ -56,6 +68,7 @@
 
     .popup-content button {
       margin: 5px;
+      margin-bottom: 0; /* Remove margin-bottom from popup buttons */
     }
 
     .telegram-link {
@@ -79,6 +92,9 @@
   <h1>Download / Open Link</h1>
   <button id="openLink">Open Job Page</button>
 
+  <button class="telegram-btn" onclick="window.open('https://t.me/comingloots', '_blank')">
+    Join Telegram for Expensive Offers & Loots Without Investment
+  </button>
   <div class="telegram-link">
     Join our <a href="https://t.me/comingloots" target="_blank">Telegram</a> for more exclusive offers and loots
   </div>
@@ -104,7 +120,7 @@
     });
 
     yesBtn.addEventListener("click", () => {
-      // Try to open in Via Browser
+      // Try To Open In Via Browser
       window.location.href = "intent://" + targetLink.replace(/^https?:\/\//, '') + "#Intent;package=mark.via.gp;scheme=https;end";
       setTimeout(() => {
         alert("If Via Browser didn’t open, please install it from Play Store.");

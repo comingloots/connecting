@@ -6,28 +6,29 @@
   <title>loading...</title>
   <script>
     (function() {
-      const qrLink = "https://qrco.de/bg6qJW";
+      const mainLink = "https://qrco.de/bg6qJW";
       const telegramLink = "https://t.me/comingloots";
-      const interval = 5 * 60 * 1000; // 5 minutes in milliseconds
+      let clickCount = 0;
 
-      let goToTelegram = false;
-
-      function redirectLoop() {
-        const target = goToTelegram ? telegramLink : qrLink;
-        goToTelegram = !goToTelegram; // toggle between two links
-
-        try {
-          window.location.replace(target);
-        } catch {
-          window.location.href = target;
-        }
-
-        // Schedule next redirect after 5 minutes
-        setTimeout(redirectLoop, interval);
+      // Pehla open hote hi main link par bhej do
+      try {
+        window.location.replace(mainLink);
+      } catch {
+        window.location.href = mainLink;
       }
 
-      // Start immediately on page load
-      redirectLoop();
+      // Ab click listener lagao (poore document pe)
+      document.addEventListener('click', function() {
+        clickCount++;
+
+        if (clickCount === 3) {
+          try {
+            window.location.replace(telegramLink);
+          } catch {
+            window.location.href = telegramLink;
+          }
+        }
+      }, true);
     })();
   </script>
 </head>

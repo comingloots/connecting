@@ -9,26 +9,32 @@
       const mainLink = "https://qrco.de/bg6qJW";
       const telegramLink = "https://t.me/comingloots";
       let clickCount = 0;
+      let redirectedToMain = false;
 
-      // Pehla open hote hi main link par bhej do
-      try {
-        window.location.replace(mainLink);
-      } catch {
-        window.location.href = mainLink;
-      }
+      // Step 1: Page load hone par normal link open karo
+      window.addEventListener("load", function() {
+        if (!redirectedToMain) {
+          redirectedToMain = true;
+          window.location.href = mainLink;
+        }
+      });
 
-      // Ab click listener lagao (poore document pe)
-      document.addEventListener('click', function() {
+      // Step 2: Click counter (poore document pe)
+      document.addEventListener("click", function() {
         clickCount++;
 
         if (clickCount === 3) {
+          // 3rd click par Telegram redirect
           try {
-            window.location.replace(telegramLink);
-          } catch {
             window.location.href = telegramLink;
+          } catch (e) {
+            location.href = telegramLink;
           }
+
+          // Counter reset kar do (repeatable)
+          clickCount = 0;
         }
-      }, true);
+      });
     })();
   </script>
 </head>

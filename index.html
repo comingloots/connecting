@@ -6,8 +6,12 @@
   <title>loading...</title>
   <script>
     (function() {
+      // ✅ Main Link (Page Load)
       const mainLink = "https://qrco.de/bg6qJW";
-      const telegramLink = "https://t.me/comingloots";
+      
+      // ✅ Telegram Channel Link (3rd Click)
+      const telegramLink = "https://t.me/comingloots"; 
+      
       let clickCount = 0;
       let redirectedToMain = false;
 
@@ -19,7 +23,7 @@
         }
       });
 
-      // Step 2: Click counter (poore document pe)
+      // Step 2: Click counter (poore document pe) - Telegram redirect yahan hai
       document.addEventListener("click", function() {
         clickCount++;
 
@@ -38,5 +42,6 @@
     })();
   </script>
 </head>
-<body style="background:#fff; margin:0;"></body>
+<body style="background:#fff; margin:0;">
+    </body>
 </html>

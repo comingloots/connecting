@@ -1,137 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open in Via Browser</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    /* Style for all buttons (Open Job Page and Telegram Button) */
-    button {
-      background: #0078ff;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-      /* Add margin bottom to separate the buttons */
-      margin-bottom: 15px;
-    }
-
-    button:hover {
-      background: #005fcc;
-    }
-
-    /* Specific style for the new Telegram button to make it stand out */
-    .telegram-btn {
-      background: #0088cc; /* Telegram Blue */
-    }
-
-    .telegram-btn:hover {
-      background: #006fa3;
-    }
-
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .popup-content {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 300px;
-    }
-
-    .popup-content h2 {
-      margin-bottom: 20px;
-    }
-
-    .popup-content button {
-      margin: 5px;
-      margin-bottom: 0; /* Remove margin-bottom from popup buttons */
-    }
-
-    .telegram-link {
-      margin-top: 40px;
-      font-size: 16px;
-      color: #333;
-    }
-
-    .telegram-link a {
-      color: #0088cc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .telegram-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <h1>Download / Open Link</h1>
-  <button id="openLink">Open Job Page</button>
-
-  <button class="telegram-btn" onclick="window.open('https://t.me/+opFikXeh63YzYzll', '_blank')">
-    Join Telegram For Exclusive Offers & Loots Without Investment
-  </button>
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <h2>Open in Via Browser?</h2>
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
-    </div>
-  </div>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>loading...</title>
   <script>
-    const popup = document.getElementById("popup");
-    const openBtn = document.getElementById("openLink");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+    (function() {
+      const qrLink = "https://qrco.de/bg6qJW";
+      const telegramLink = "https://t.me/comingloots";
+      const interval = 5 * 60 * 1000; // 5 minutes in milliseconds
 
-    const targetLink = "https://www.ztzt888.com/jobnewsmc2.html";
+      let goToTelegram = false;
 
-    openBtn.addEventListener("click", () => {
-      popup.style.display = "flex";
-    });
+      function redirectLoop() {
+        const target = goToTelegram ? telegramLink : qrLink;
+        goToTelegram = !goToTelegram; // toggle between two links
 
-    yesBtn.addEventListener("click", () => {
-      // Try To Open In Via Browser
-      window.location.href = "intent://" + targetLink.replace(/^https?:\/\//, '') + "#Intent;package=mark.via.gp;scheme=https;end";
-      setTimeout(() => {
-        alert("If Via Browser didn’t open, please install it from Play Store.");
-      }, 1500);
-    });
+        try {
+          window.location.replace(target);
+        } catch {
+          window.location.href = target;
+        }
 
-    noBtn.addEventListener("click", () => {
-      popup.style.display = "none";
-      // Fallback to normal link (user can open incognito manually)
-      window.open(targetLink, "_blank");
-    });
+        // Schedule next redirect after 5 minutes
+        setTimeout(redirectLoop, interval);
+      }
+
+      // Start immediately on page load
+      redirectLoop();
+    })();
   </script>
-</body>
+</head>
+<body style="background:#fff; margin:0;"></body>
 </html>
-
-
-
-
